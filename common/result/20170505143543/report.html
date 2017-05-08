@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>testReport</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 24pt;
+	color: #222222;
+}
+h4 {
+	font-size: 10.5pt;
+	color: #050505;
+}
+h3 {
+	font-size: 13pt;
+	color: #050505;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+    width: 606px;
+    hight:400px;
+    float:left;
+}
+.fl{
+    width: 20px;
+    hight:400px;
+    float:left;
+}
+.heading-right {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+    hight:400px;
+    background-color:#8AA45D;
+    float:left;
+}
+.clear{clear:both; height: 0; line-height: 0; font-size: 0}
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+    margin-left: 500px;
+    color: #c00;
+    font-size: 14pt;
+    font-weight: bold;
+}
+a.popup_link:hover {
+    color: red;
+}
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+}
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #777;
+}
+#header_row {
+    text-align:center;vertical-align:middle;
+    font-weight: bold;
+    background-color: #322B21;
+    color:white;
+}
+#result_table td {
+    border: 2px solid black;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; text-align:center;vertical-align:middle;}
+.passClass  { background-color: #6c6; text-align:center;vertical-align:middle;}
+.failClass  { background-color: #c60; text-align:center;vertical-align:middle;}
+.errorClass { background-color: #c00; text-align:center;vertical-align:middle;}
+.passCase   { color: #6c6; text-align:center;vertical-align:middle;}
+.failCase   { color: #c60; font-weight: bold; font-size: 14pt;text-align:center;vertical-align:middle;}
+.errorCase  { color: #c00; font-weight: bold; font-size: 14pt; text-align:center;vertical-align:middle;}
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+#icon{
+    margin-right: auto;
+    height: 40px;
+    width: 40px;
+}
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript">
+    function piechart(ctx, data, r) {
+    this.ctx = ctx;
+    this.data = data;
+    this.r = r;
+};
+piechart.prototype.draw = function () {
+    var title = this.data.title;
+    var colors = ['#05D116', '#FBD108', '#FF0F00', '#FFCC00', '#FFFF00', '#FF6666', '#CCCCFF', '#999933', '#009966'];
+    var dataTitle = this.data.datetile;
+    var dataarray = this.data.data;
+    this.ctx.canvas.height = this.r * 2 + 110;
+    this.ctx.canvas.width = this.r * 2 + 210;
+    this.ctx.font = 'bold 16px Arial';
+    this.ctx.textAlign = 'center';
+    this.ctx.fillText(title, this.ctx.canvas.width / 2, 25);
+    var circlecenter = { 'x': this.r + 50, 'y': this.r + 70 };
+    var lastendPI = 0 * Math.PI;
+    var angle = parseFloat('0.0');
+    var arc_oneend = { 'x': circlecenter.x + this.r, 'y': circlecenter.y };
+    var arc_anotherend = { 'x': circlecenter.x + this.r, 'y': circlecenter.y };
+    var remark_start = { 'x': 0, 'y': 0 };
+    var remark_end = { 'x':0, 'y':0 };
+    for (var i = 0; i < dataarray.length; i++) {
+        arc_oneend.x = arc_anotherend.x;
+        arc_oneend.y = arc_anotherend.y;
+        remark_start.x = circlecenter.x + this.r * Math.cos((angle + parseFloat(dataarray[i].persent) / 2) * 2 * Math.PI);
+        remark_start.y = circlecenter.y + this.r * Math.sin((angle + parseFloat(dataarray[i].persent) / 2) * 2 * Math.PI);
+        angle += parseFloat(dataarray[i].persent);
+        arc_anotherend.x = circlecenter.x + this.r * Math.cos(angle * 2 * Math.PI);
+        arc_anotherend.y = circlecenter.y + this.r * Math.sin(angle * 2 * Math.PI);
+        remark_end.x = remark_start.x > circlecenter.x ? remark_start.x + 20 : remark_start.x - 20;
+        remark_end.y = remark_start.y > circlecenter.y ? remark_start.y + 20 : remark_start.y - 20;
+        this.ctx.beginPath();
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = 'gray';
+        this.ctx.moveTo(remark_start.x, remark_start.y);
+        this.ctx.lineTo(remark_end.x, remark_end.y);
+        this.ctx.stroke();
+        this.ctx.font = '12px Arial';
+        this.ctx.fillStyle = 'black';
+        this.ctx.fillText( dataTitle[i].num, remark_end.x, remark_end.y > circlecenter.y ? remark_end.y + 10 : remark_end.y);
+        this.ctx.beginPath();
+        this.ctx.lineWidth = 1;
+        this.ctx.moveTo(arc_oneend.x ,arc_oneend.y);
+        this.ctx.lineTo(circlecenter.x, circlecenter.y);
+        this.ctx.lineTo(arc_anotherend.x, arc_anotherend.y);
+        this.ctx.arc(circlecenter.x, circlecenter.y, this.r, lastendPI, lastendPI + dataarray[i].persent * 2 * Math.PI);
+        this.ctx.strokeStyle = colors[i];
+        this.ctx.fillStyle = colors[i];
+        this.ctx.fill();
+        this.ctx.stroke();
+        lastendPI += dataarray[i].persent * 2 * Math.PI;
+    }
+    this.ctx.lineWidth = 15;
+    for (var i = 0; i < dataarray.length; i++) {
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = colors[i];
+        this.ctx.fillStyle = 'black';
+        this.ctx.moveTo(this.ctx.canvas.width - 80, 50 + i * 17);
+        this.ctx.lineTo(this.ctx.canvas.width - 65, 50 + i * 17);
+        this.ctx.font = '12px Arial';
+        this.ctx.textAlign = 'left';
+        this.ctx.fillText(dataarray[i].title, this.ctx.canvas.width - 60, 50 + i * 17 + 4);
+        this.ctx.stroke();
+    }
+}
+</script>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+function picBig() {
+            var img = event.srcElement; //得到点击对象,IE下用这个
+            //var img = event.target; //得到点击对象,别的浏览器用这个
+            if (img.nodeName.toLocaleUpperCase() == "IMG") { //判断如果是<img>元素
+                var url = img.src; //得到图片的路径
+                document.getElementById("showimg").src = url; //把图片路径给浮动层里的<img>
+                //document.getElementById("spanimg").innerHTML = url; //主要是显示用，可删掉
+                var v = document.getElementById('divCenter'); //得到浮动层
+                v.style.display = "block"; //让浮动层显示（弹出）
+            }
+        }
+ function picClose() {
+                var v = document.getElementById('divCenter');
+                v.style.display = "none";
+            }
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+<div id="divCenter" align="center" style="position: absolute; z-index: 9; display: none; left:600px;top:200px; border:1px solid #222;">
+    <img style="height:750px; width:500px;" href="javascript:void(0);" onclick="picClose();" src="" id="showimg" />
+    </div>
+<div class='heading'>
+<h1>testReport</h1>
+<h4><p class='attribute'><strong>Start Time:</strong> 2017-05-05 14:36:17</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:00.002701</p>
+<p class='attribute'><strong>Status:</strong> Error 1</p>
+</h4>
+<p>&nbsp;</p>
+<p class='description'><h3>Report_description</h3></p>
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+</div>
+<div class='fl'>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div class='fl'>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div class='heading-right'><canvas id ='myCanvasF'  style='border:1px solid #d3d3d3;' ></canvas></div>
+<script language="javascript" type="text/javascript">
+    var jsonData = {
+    'title': '测试结果统计图',
+    'data': [{ 'title': '成功', 'persent': '0.0' }, { 'title': '失败', 'persent': '0.0' },
+            { 'title': '错误', 'persent': '1.0' }],
+    'datetile':[{ 'title': '成功', 'num': '0' }, { 'title': '失败', 'num': '0' },
+            { 'title': '错误', 'num': '1' }]
+};
+</script>
+<script language="javascript" type="text/javascript">
+    var c = document.getElementById('myCanvasF');
+    var ctx = c.getContext('2d');
+    var v = new piechart(ctx, jsonData, 80);
+    v.draw();
+</script>
+
+
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Description</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+    <td>Begin</td>
+    <td>CheckPoint</td>
+    <td>End</td>
+</tr>
+
+<tr class='errorClass'>
+    <td>demo1.Demo1</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td><a href="javascript:showClassDetail('c1',1)">Detail</a></td>
+    <td><a name='ScreenShot' href='javascript:void(0);' onclick='picBig();'><img id="icon" src="1" alt="test"/></a></td>
+    <td><a name='ScreenShot' href='javascript:void(0);' onclick='picBig();'><img id="icon" src="1" alt="test"/></a></td>
+    <td><a name='ScreenShot' href='javascript:void(0);' onclick='picBig();'><img id="icon" src="1" alt="test"/></a></td>
+</tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_demo</div></td>
+    <td colspan='9' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        error</a>
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: Traceback (most recent call last):
+  File "/Users/alex/PycharmProjects/01 Android_NewooEyes/dotest/demo1.py", line 26, in setUp
+    print 'begin test'
+  File "/Users/alex/PycharmProjects/01 Android_NewooEyes/common/HTMLTestRunner.py", line 103, in write
+    self.fp.write(s)
+TypeError: unicode argument expected, got 'str'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>&nbsp;</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+</body>
+</html>

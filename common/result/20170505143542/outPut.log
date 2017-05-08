@@ -1,0 +1,3 @@
+2017-05-05 14:35:47,912 - selenium.webdriver.remote.remote_connection - INFO - Could not get IP address for host: 127.0.0.1
+2017-05-05 14:35:47,927 - root - INFO - Start to test
+2017-05-05 14:35:47,930 - root - INFO - End to test
